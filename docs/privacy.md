@@ -1,0 +1,35 @@
+# Privacy
+
+gem-in-game analyses real people: your teammates, opponents and referees, often amateurs and sometimes minors. The code is public; everything about your games is not.
+
+## What never leaves `workspace/`
+
+`$GEM_WORKSPACE` (default `./workspace`) is gitignored. Keep all of this inside it and never commit, push or upload it:
+
+- game videos, extracted frames, review sheets, crops, zooms, evidence images, tactics-board clips;
+- `game.json` (team names, rosters, colours), `official.json` and any league exports;
+- film-review outputs, fact sheets, reports, narration scripts and MP3s, cue loops, `index.html` pages (they embed figures and may embed frames);
+- logs and screenshots of league sites.
+
+Before any commit: `git status` must show no file from `workspace/`, no media (`*.mp4`, `*.mov`, `*.jpg` frames, `*.mp3`) and no personal names. If something slipped into history, rewrite it (`git filter-repo`) before the repo goes public; deleting it in a later commit is not enough.
+
+## People in the footage
+
+- Refer to players by jersey number in all outputs. Do not add names, even if you know them.
+- **Minors**: if any player in the game is under 18, get a parent or guardian's consent before sharing anything that shows them (frames, clips, personal reports), and keep their personal reports between the player, their guardians and the coach.
+- **Consent for frames**: share frames or clips of players only with the team, and only with the consent of the people shown. Opponents and referees did not agree to be analysed: their frames never go beyond your coaching staff and players, and never onto public sites or social media.
+- Personal deep dives go to that player (and the coach), not to the whole group, unless the player agrees.
+- Delete a player's material when they ask.
+
+## Where data goes off your machine
+
+- **Local**: detection, tracking, embeddings and jersey reading run on your GPU; video does not leave the machine for these stages.
+- **Your AI agent**: when Claude Code, Codex or another agent reads review sheets, frames, stats or reports, that content is sent to the model provider under your account's terms. Only use the film-review step if your team is comfortable with that.
+- **Narration**: `narrate` uses edge-tts, which sends the script text to Microsoft's online text-to-speech service. Keep names out of scripts (jersey numbers only), or skip narration.
+- **Model downloads**: Hugging Face is contacted to download weights; no game data is uploaded.
+- **League sites**: logging in to fetch official stats uses your own credentials. Keep them in a secrets file outside the repo, never in prompts, logs or commits, and follow the site's terms of use.
+
+## Sharing reports
+
+- `gem-in-game html <folder> --share --out FILE` makes a single self-contained file without local paths or repo links. Send it privately (team chat, email), not on a public page.
+- Re-check the shared file for frames of people who did not consent before sending.
