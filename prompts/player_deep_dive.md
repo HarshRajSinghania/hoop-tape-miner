@@ -4,7 +4,7 @@ For one focus player only, written to them in the second person. Goal: they see 
 
 ## Inputs
 
-- `player<N>_facts.md` (official line, stints and on/off score, chronological log of involvements with video times and coach notes), the team report, `gem-in-game plusminus --player <N>` output (with film-checked stints), the momentum figure.
+- `player<N>_facts.md` (official line, stints and on/off score, chronological log of involvements with video times and coach notes), the team report, `hoop-tape-miner plusminus --player <N>` output (with film-checked stints), the momentum figure.
 - If the facts sheet lacks something, leave it out. Mark inferred identities "likely".
 
 ## Section skeleton
@@ -58,5 +58,5 @@ Data note: <what the official sheet does and does not record; which official eve
 4. Conditioning, fatigue and late-game drops are stated plainly with the minute count behind them.
 5. The three calls must be the same words used in the court cues (`prompts/court_cues.md`), so they become anchors.
 6. Jersey numbers only, no names. No local paths or repo links.
-7. Both languages, each a complete file (`README.md` Chinese, `README.en.md` English, as the HTML page expects) with the same facts, times and section order, written naturally. Run `gem-in-game html <game>/player-<N>`; `game.json` is found in the parent folder.
+7. Both languages, each a complete file (`README.md` Chinese, `README.en.md` English, as the HTML page expects) with the same facts, times and section order, written naturally. Run `hoop-tape-miner html <game>/player-<N>`; `game.json` is found in the parent folder.
 8. Length: roughly 1,200-1,800 words per language.

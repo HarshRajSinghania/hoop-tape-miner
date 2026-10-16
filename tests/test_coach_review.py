@@ -6,9 +6,9 @@ import numpy as np
 import pandas as pd
 import pytest
 
-from gem_in_game import coach_review
+from hoop_tape_miner import coach_review
 
-from gem_in_game.coach_review import (brief_values, compose, events_text, fill_brief, intervals, lineup_intervals,
+from hoop_tape_miner.coach_review import (brief_values, compose, events_text, fill_brief, intervals, lineup_intervals,
                                       on_court, split_parts, window_events)
 
 

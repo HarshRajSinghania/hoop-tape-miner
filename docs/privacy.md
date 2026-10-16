@@ -1,10 +1,10 @@
 # Privacy
 
-gem-in-game analyses real people: your teammates, opponents and referees, often amateurs and sometimes minors. The code is public; everything about your games is not.
+hoop-tape-miner analyses real people: your teammates, opponents and referees, often amateurs and sometimes minors. The code is public; everything about your games is not.
 
 ## What never leaves `workspace/`
 
-`$GEM_WORKSPACE` (default `./workspace`) is gitignored. Keep all of this inside it and never commit, push or upload it:
+`$HOOP_WORKSPACE` (default `./workspace`) is gitignored. Keep all of this inside it and never commit, push or upload it:
 
 - game videos, extracted frames, review sheets, crops, zooms, evidence images, tactics-board clips;
 - `game.json` (team names, rosters, colours), `official.json` and any league exports;
@@ -31,5 +31,5 @@ Before any commit: `git status` must show no file from `workspace/`, no media (`
 
 ## Sharing reports
 
-- `gem-in-game html <folder> --share --out FILE` makes a single self-contained file without local paths or repo links. Send it privately (team chat, email), not on a public page.
+- `hoop-tape-miner html <folder> --share --out FILE` makes a single self-contained file without local paths or repo links. Send it privately (team chat, email), not on a public page.
 - Re-check the shared file for frames of people who did not consent before sending.

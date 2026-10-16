@@ -1,6 +1,6 @@
 # Pipeline
 
-Local pipeline that turns one amateur basketball game video into a tactical scouting report. Developed on a single 8 GB NVIDIA GPU. All stages run through `uv run gem-in-game <stage> ...`. Per-game data lives in the workspace (`$GEM_WORKSPACE`, default `./workspace`, gitignored): `workspace/teams/<opponent-slug>/<date>/` holds `game.json`, the heavy `run/` folder and the finished report. The step-by-step procedure is `docs/playbook.md`.
+Local pipeline that turns one amateur basketball game video into a tactical scouting report. Developed on a single 8 GB NVIDIA GPU. All stages run through `uv run hoop-tape-miner <stage> ...`. Per-game data lives in the workspace (`$HOOP_WORKSPACE`, default `./workspace`, gitignored): `workspace/teams/<opponent-slug>/<date>/` holds `game.json`, the heavy `run/` folder and the finished report. The step-by-step procedure is `docs/playbook.md`.
 
 ## Why a custom pipeline
 
@@ -50,7 +50,7 @@ So we reuse the good parts (SigLIP+UMAP+KMeans team recipe, ByteTrack, RF-DETR) 
 | `narrate` | `FOLDER` or `--script FILE` [`--lang zh en --out --gap --chime --loud --rate`] | `listen.<lang>.mp3` per script, or one MP3 next to `--script` |
 | `html` | `FOLDER` [`--out index.html --share`] | bilingual `index.html` (`--share`: self-contained copy with audio embedded) |
 
-`uv run gem-in-game <stage> -h` is authoritative; `docs/playbook.md` shows each stage with real paths. Team names, colours (`us.hex` / `them.hex`), focus player, periods, rosters, result and narration voices come from `game.json`.
+`uv run hoop-tape-miner <stage> -h` is authoritative; `docs/playbook.md` shows each stage with real paths. Team names, colours (`us.hex` / `them.hex`), focus player, periods, rosters, result and narration voices come from `game.json`.
 
 Current limits: the HTML page and narration handle exactly two languages, Chinese (`README.md`, `listen.zh.md`) and English (`README.en.md`, `listen.en.md`); `official` reads one league's box-score/point-chart JSON format; court dimensions are FIBA.
 

@@ -1,7 +1,7 @@
 """Court calibration keyframes (keyframes.json) for `extract --calib` / `recalib --calib`.
 
-    gem-in-game calibrate --video V --times 1020 --out calib/                    # click points in a window
-    gem-in-game calibrate --video V --times 1020 --points points.json --out calib/  # non-interactive
+    hoop-tape-miner calibrate --video V --times 1020 --out calib/                    # click points in a window
+    hoop-tape-miner calibrate --video V --times 1020 --points points.json --out calib/  # non-interactive
     ... --propagate 1040,1060,1150     # also track the camera forward and add keyframes at these times
 
 For each time (s): grab the frame, take >= 4 court landmarks (clicked, or from points.json),
@@ -164,7 +164,7 @@ def load_bank(path) -> KeyframeBank:
 
 
 def main(argv=None):
-    ap = argparse.ArgumentParser(prog="gem-in-game calibrate", description=__doc__.splitlines()[0])
+    ap = argparse.ArgumentParser(prog="hoop-tape-miner calibrate", description=__doc__.splitlines()[0])
     ap.add_argument("--video", required=True)
     ap.add_argument("--times", required=True, help="comma-separated seconds of frames to calibrate by hand")
     ap.add_argument("--out", required=True, help="directory for keyframes.json + images")

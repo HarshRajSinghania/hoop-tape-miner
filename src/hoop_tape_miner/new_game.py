@@ -1,8 +1,8 @@
 """Scaffold a new game in the workspace: game.json from templates/, run/ for heavy outputs, opponent dossier.
 
-usage: gem-in-game new-game --opponent "Red Foxes" --date 2026-10-14 [--video PATH] [--us-team NAME] [--force]
+usage: hoop-tape-miner new-game --opponent "Red Foxes" --date 2026-10-14 [--video PATH] [--us-team NAME] [--force]
 Creates <workspace>/teams/<opponent-slug>/<date>/{game.json, run/} and <workspace>/teams/<opponent-slug>/README.md
-(workspace = $GEM_WORKSPACE or ./workspace). An existing game.json / README.md is never overwritten
+(workspace = $HOOP_WORKSPACE or ./workspace). An existing game.json / README.md is never overwritten
 unless --force.
 """
 from __future__ import annotations
@@ -63,7 +63,7 @@ def scaffold(opponent: str, date: str, video: str | None = None, us_team: str | 
 
 
 def main(argv=None):
-    ap = argparse.ArgumentParser(prog="gem-in-game new-game", description=__doc__.splitlines()[0])
+    ap = argparse.ArgumentParser(prog="hoop-tape-miner new-game", description=__doc__.splitlines()[0])
     ap.add_argument("--opponent", required=True, help='opponent team name, e.g. "Red Foxes"')
     ap.add_argument("--date", required=True, help="game date YYYY-MM-DD")
     ap.add_argument("--video", help="path to our game video (stored in game.json)")
@@ -77,14 +77,14 @@ def main(argv=None):
 Next steps:
   1. Edit {folder / 'game.json'}: team names, periods (seconds of our video), rosters, optional hex colours.
   2. Calibrate the court (keyframes.json), then run the CV passes into {run}:
-       gem-in-game extract --video {video} --out {run} --calib <keyframes.json>
-       gem-in-game embed   --run {run} --video {video}
-       gem-in-game tracks  --run {run} --video {video} --game {folder / 'game.json'}
-       gem-in-game jersey  --run {run} --video {video}
-       gem-in-game analyze --run {run} --game {folder / 'game.json'}
+       hoop-tape-miner extract --video {video} --out {run} --calib <keyframes.json>
+       hoop-tape-miner embed   --run {run} --video {video}
+       hoop-tape-miner tracks  --run {run} --video {video} --game {folder / 'game.json'}
+       hoop-tape-miner jersey  --run {run} --video {video}
+       hoop-tape-miner analyze --run {run} --game {folder / 'game.json'}
   3. Review, write README.md / README.en.md in {folder}, then:
-       gem-in-game html {folder}
-  Run `gem-in-game <stage> -h` for each stage's options.""")
+       hoop-tape-miner html {folder}
+  Run `hoop-tape-miner <stage> -h` for each stage's options.""")
 
 
 if __name__ == "__main__":

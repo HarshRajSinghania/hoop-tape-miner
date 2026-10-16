@@ -5,7 +5,7 @@ Everything game-specific comes from the data: the score flow from official.json,
 from game.json `periods`, team colours from game.json `us.hex` / `them.hex`. Scoring runs are found
 automatically (largest margin swings) unless given with --stretches.
 
-usage: gem-in-game momentum --official official.json --out momentum.png [--game game.json]
+usage: hoop-tape-miner momentum --official official.json --out momentum.png [--game game.json]
            [--lineup lineup_intervals.json --players us#4,us#7,them#11] [--lang en|zh]
            [--stretches "Start:0-450,Their run:450-1272,..."] [--title "..."]
 """
@@ -128,7 +128,7 @@ def breaks(periods) -> list[tuple[float, float, bool]]:
 
 
 def main(argv=None):
-    ap = argparse.ArgumentParser(prog="gem-in-game momentum", description=__doc__.splitlines()[0])
+    ap = argparse.ArgumentParser(prog="hoop-tape-miner momentum", description=__doc__.splitlines()[0])
     ap.add_argument("--official", required=True)
     ap.add_argument("--game", help="game.json (periods, team colours); default: next to --official or its parent")
     ap.add_argument("--lineup", help="lineup_intervals.json {\"us#4\": [[t0, t1], ...]} for on-court lanes")

@@ -1,10 +1,24 @@
-# gem-in-game
+# hoop-tape-miner 🏀
 
-**Turn the video of your amateur basketball game into a coach's report: what happened, why you lost or won, what each player should practise, and a narrated version your teammates can listen to.**
+**Mine your basketball game tape for the insights that win the next game.**
 
-You bring one game video. Your AI coding agent ([Claude Code](https://claude.com/claude-code) or [Codex](https://openai.com/codex)) runs the pipeline in this repo on your own GPU, reviews the film like a coach, and writes the report.
+[![tests](https://github.com/mariusDing/hoop-tape-miner/actions/workflows/tests.yml/badge.svg)](https://github.com/mariusDing/hoop-tape-miner/actions/workflows/tests.yml)
+[![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+[![Python 3.11](https://img.shields.io/badge/python-3.11-blue.svg)](pyproject.toml)
+[![Agent: Claude Code | Codex](https://img.shields.io/badge/agent-Claude%20Code%20%7C%20Codex-8A2BE2.svg)](AGENTS.md)
+[![good first issues](https://img.shields.io/github/issues/mariusDing/hoop-tape-miner/good%20first%20issue.svg?label=good%20first%20issues)](https://github.com/mariusDing/hoop-tape-miner/issues?q=is%3Aopen+label%3A%22good+first+issue%22)
 
 English · [中文](README.zh.md)
+
+AI basketball video analysis for amateur and club teams. Turn the video of your game into a coach's report: what happened, why you lost or won, how the opponent plays, what each player should practise, and a narrated version your teammates can listen to.
+
+You bring one game video. Your AI coding agent ([Claude Code](https://claude.com/claude-code) or [Codex](https://openai.com/codex)) runs the computer-vision pipeline in this repo on your own GPU, reviews the film like a coach, and writes the report. No subscription, no upload of your video to a sports-analytics service.
+
+**Who it's for**
+
+- Amateur, club and rec-league teams that film their games but never have time to study the tape.
+- Captains and volunteer coaches who want a scouting report on the opponent before the rematch.
+- Developers who want a working basketball computer-vision and AI-agent film-review pipeline to fork and build on.
 
 ![The report: score, a big play button for the narration, and the coach's write-up](docs/images/hero.png)
 
@@ -56,16 +70,16 @@ Full details: [docs/pipeline.md](docs/pipeline.md).
 ### 2. Install
 
 ```bash
-git clone https://github.com/mariusDing/gem-in-game.git
-cd gem-in-game
+git clone https://github.com/mariusDing/hoop-tape-miner.git
+cd hoop-tape-miner
 uv sync
-uv run gem-in-game          # lists every stage
+uv run hoop-tape-miner          # lists every stage
 ```
 
 ### 3. Start a game
 
 ```bash
-uv run gem-in-game new-game --opponent "Red Foxes" --date 2026-10-14 --video path/to/game.mp4 --us-team "Night Owls"
+uv run hoop-tape-miner new-game --opponent "Red Foxes" --date 2026-10-14 --video path/to/game.mp4 --us-team "Night Owls"
 ```
 
 This creates `workspace/teams/red-foxes/2026-10-14/` with a `game.json` to fill in: team names, jersey colours, rosters and the final score. Everything in `workspace/` stays on your machine and is never committed.
@@ -86,7 +100,7 @@ When it finishes, open `workspace/teams/red-foxes/2026-10-14/index.html`.
 ### 5. Share it
 
 ```bash
-uv run gem-in-game html workspace/teams/red-foxes/2026-10-14 --share --out Night-Owls_vs_Red-Foxes.html
+uv run hoop-tape-miner html workspace/teams/red-foxes/2026-10-14 --share --out Night-Owls_vs_Red-Foxes.html
 ```
 
 The result is a single file with images and audio inside. Send it in any chat app. If an in-app viewer blocks scripts, the page falls back to the phone's own audio player.
@@ -105,16 +119,16 @@ The result is a single file with images and audio inside. Send it in any chat ap
 | `narrate` | spoken script → MP3 (`--chime --gap 6 --loud` makes an on-court cue loop) |
 | `html` | report folder → one bilingual HTML page (`--share` for a single sendable file) |
 
-Run `uv run gem-in-game <stage> -h` for the options of each stage.
+Run `uv run hoop-tape-miner <stage> -h` for the options of each stage.
 
 ## Project layout
 
 ```
-docs/playbook.md     the procedure your agent follows, video → report
-prompts/             writing guides: film review brief, coach report, player deep dive, narration, court cues
-templates/           game.json and opponent dossier skeletons
-src/gem_in_game/     the pipeline (one module per stage)
-workspace/           YOUR data: videos, runs, reports (gitignored)
+docs/playbook.md         the procedure your agent follows, video → report
+prompts/                 writing guides: film review brief, coach report, player deep dive, narration, court cues
+templates/               game.json and opponent dossier skeletons
+src/hoop_tape_miner/     the pipeline (one module per stage)
+workspace/               YOUR data: videos, runs, reports (gitignored)
 ```
 
 ## FAQ
@@ -131,6 +145,26 @@ workspace/           YOUR data: videos, runs, reports (gitignored)
 
 **Privacy.** The reports name players and show frames of real people. Read [docs/privacy.md](docs/privacy.md) before sharing, especially if minors play in your league.
 
+## Status and roadmap
+
+Working end to end on real games (one side-on camera, NVIDIA GPU). Known limits and what's next:
+
+- [ ] Run without CUDA (CPU or Apple Silicon jersey reader)
+- [ ] A synthetic demo game anyone can run, with no real players in it
+- [ ] Box-score importers for more leagues (today: one league format, see [`official.py`](src/hoop_tape_miner/official.py))
+- [ ] More report and narration languages beyond English and Chinese
+- [ ] Better handling of panning or phone-recorded video
+
+Ideas and votes are welcome in [Discussions](https://github.com/mariusDing/hoop-tape-miner/discussions).
+
+## Contributing
+
+Contributions are welcome, from a typo fix to a new league importer. Start with [CONTRIBUTING.md](CONTRIBUTING.md) and the [good first issues](https://github.com/mariusDing/hoop-tape-miner/issues?q=is%3Aopen+label%3A%22good+first+issue%22). Ask questions in [Discussions](https://github.com/mariusDing/hoop-tape-miner/discussions).
+
+One hard rule: never attach game videos, frames, rosters or names of real players to issues or pull requests. See [docs/privacy.md](docs/privacy.md).
+
+Please follow the [Code of Conduct](CODE_OF_CONDUCT.md). Report security issues privately as described in [SECURITY.md](SECURITY.md).
+
 ## Acknowledgements
 
 Built on [RF-DETR](https://github.com/roboflow/rf-detr), [supervision](https://github.com/roboflow/supervision) / [trackers](https://github.com/roboflow/trackers), [SigLIP](https://huggingface.co/google/siglip-base-patch16-224), [Qwen3-VL](https://huggingface.co/Qwen), [edge-tts](https://github.com/rany2/edge-tts), and ideas from [basketball_analysis](https://github.com/abdullahtarek/basketball_analysis). See [docs/research.md](docs/research.md).
@@ -138,5 +172,7 @@ Built on [RF-DETR](https://github.com/roboflow/rf-detr), [supervision](https://g
 ## License
 
 [MIT](LICENSE). Models downloaded at run time keep their own licences.
+
+To cite this project, use **Cite this repository** in the GitHub sidebar ([CITATION.cff](CITATION.cff)).
 
 If this helps your team, a ⭐ helps others find it.

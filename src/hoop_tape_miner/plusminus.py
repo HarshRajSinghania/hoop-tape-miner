@@ -1,6 +1,6 @@
 """Plus-minus and stints per player from lineup intervals + the official score flow.
 
-    gem-in-game plusminus --lineup review_v1/lineup_intervals.json --official official.json \
+    hoop-tape-miner plusminus --lineup review_v1/lineup_intervals.json --official official.json \
         --out plusminus.json [--player 17] [--team us] [--lineup film_stints.json] \
         [--event-times play_times.json] [--merge-gap 0] [--windows 450-1272,1272-1810]
 
@@ -111,7 +111,7 @@ def markdown(result: dict, detail: bool) -> str:
 
 
 def main(argv=None):
-    ap = argparse.ArgumentParser(prog="gem-in-game plusminus", description=__doc__.splitlines()[0])
+    ap = argparse.ArgumentParser(prog="hoop-tape-miner plusminus", description=__doc__.splitlines()[0])
     ap.add_argument("--lineup", action="append", required=True, help="lineup json; repeat to override keys")
     ap.add_argument("--official", required=True)
     ap.add_argument("--out", required=True, help="output json")

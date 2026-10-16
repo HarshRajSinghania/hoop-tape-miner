@@ -4,8 +4,8 @@ import unittest
 import numpy as np
 import pandas as pd
 
-from gem_in_game.analyze import identities
-from gem_in_game.jersey import pick_crops
+from hoop_tape_miner.analyze import identities
+from hoop_tape_miner.jersey import pick_crops
 
 
 def pick_crops_reference(tr, all_df, k=4):

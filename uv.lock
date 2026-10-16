@@ -357,7 +357,7 @@ wheels = [
 ]
 
 [[package]]
-name = "gem-in-game"
+name = "hoop-tape-miner"
 version = "0.1.0"
 source = { editable = "." }
 dependencies = [

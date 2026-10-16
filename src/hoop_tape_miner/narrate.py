@@ -1,9 +1,9 @@
 """Turn a spoken script (plain paragraphs written for the ear) into an MP3, with a pause between paragraphs.
 
 usage:
-  gem-in-game narrate workspace/teams/<opponent>/<date> [--lang zh en]
+  hoop-tape-miner narrate workspace/teams/<opponent>/<date> [--lang zh en]
       report narration: listen.zh.md / listen.en.md -> listen.zh.mp3 / listen.en.mp3 in that folder
-  gem-in-game narrate --script cues.zh.md [--gap 6 --chime --loud --rate -5%]
+  hoop-tape-miner narrate --script cues.zh.md [--gap 6 --chime --loud --rate -5%]
       any single script -> cues.zh.mp3 next to it (language from the .zh/.en suffix). --chime plays a short
       two-tone bell before every paragraph and --gap leaves silence after it, which makes a loop you can
       listen to on court; --loud normalises to -14 LUFS so it cuts through gym noise.

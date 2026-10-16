@@ -1,0 +1,24 @@
+name: tests
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  pytest:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v6
+      - name: Install (CPU torch; the CUDA index in pyproject is for local GPUs)
+        run: |
+          uv venv --python 3.11
+          uv pip install --no-sources --torch-backend cpu -e . pytest
+      - name: Test
+        run: uv run --no-sync pytest -q

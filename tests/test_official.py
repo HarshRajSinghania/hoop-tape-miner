@@ -1,6 +1,6 @@
 import unittest
 
-from gem_in_game.official import load_glory, map_time
+from hoop_tape_miner.official import load_glory, map_time
 
 SEGS = [{"official_from": 0, "official_to": 334, "offset_s": 78.5},
         {"official_from": 334, "official_to": 2648, "offset_s": 148.0}]

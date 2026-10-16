@@ -1,8 +1,24 @@
 [project]
-name = "gem-in-game"
+name = "hoop-tape-miner"
 version = "0.1.0"
-description = "Local computer-vision pipeline that turns an amateur basketball game video into a tactical scouting report"
+description = "AI basketball video analysis for amateur teams: one game video -> coach report, player reviews, charts and narration, via computer vision and AI-agent film review"
+readme = "README.md"
 license = "MIT"
+license-files = ["LICENSE"]
+authors = [{ name = "mariusDing" }]
+keywords = ["basketball", "sports-analytics", "computer-vision", "video-analysis", "coaching", "scouting", "object-tracking", "ai-agents", "claude-code", "codex"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: End Users/Desktop",
+    "Intended Audience :: Developers",
+    "Operating System :: Microsoft :: Windows",
+    "Operating System :: POSIX :: Linux",
+    "Programming Language :: Python :: 3 :: Only",
+    "Programming Language :: Python :: 3.11",
+    "Topic :: Multimedia :: Video",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+    "Topic :: Scientific/Engineering :: Image Recognition",
+]
 requires-python = ">=3.11,<3.12"
 dependencies = [
     "accelerate>=1.15.0",
@@ -28,8 +44,15 @@ dependencies = [
     "umap-learn>=0.5.12",
 ]
 
+[project.urls]
+Homepage = "https://github.com/mariusDing/hoop-tape-miner"
+Documentation = "https://github.com/mariusDing/hoop-tape-miner/tree/master/docs"
+Repository = "https://github.com/mariusDing/hoop-tape-miner"
+Issues = "https://github.com/mariusDing/hoop-tape-miner/issues"
+Changelog = "https://github.com/mariusDing/hoop-tape-miner/blob/master/CHANGELOG.md"
+
 [project.scripts]
-gem-in-game = "gem_in_game.cli:main"
+hoop-tape-miner = "hoop_tape_miner.cli:main"
 
 [tool.uv.sources]
 torch = [{ index = "pytorch-cu124" }]

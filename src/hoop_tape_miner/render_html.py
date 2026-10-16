@@ -1,10 +1,10 @@
 """Render a bilingual report folder (README.md = 中文, README.en.md = English) into one HTML page with
 a 中文 / EN switch. Images are inlined; if listen.zh.mp3 / listen.en.mp3 sit next to the READMEs
-(`gem-in-game narrate` makes them) the page gets a play button that reads the report aloud.
+(`hoop-tape-miner narrate` makes them) the page gets a play button that reads the report aloud.
 
-usage: gem-in-game html workspace/teams/<opponent>/<date> [--out index.html]
-       gem-in-game html workspace/teams/<opponent>/<date>/player-<number>
-       gem-in-game html workspace/teams/<opponent>/<date> --share --out /somewhere/Us_vs_Them_<date>.html
+usage: hoop-tape-miner html workspace/teams/<opponent>/<date> [--out index.html]
+       hoop-tape-miner html workspace/teams/<opponent>/<date>/player-<number>
+       hoop-tape-miner html workspace/teams/<opponent>/<date> --share --out /somewhere/Us_vs_Them_<date>.html
 game.json (team names, optional us.hex / them.hex colours, result incl. halftime) is read from the folder or
 its parent. --share drops repo links and local paths and embeds the audio, so the single file can be sent to
 anyone.

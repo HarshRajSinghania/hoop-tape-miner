@@ -146,7 +146,7 @@ def load_glory(boxscore_json, pointchart_json, us_is_home: bool, segments=None,
 
 
 def main(argv=None):
-    ap = argparse.ArgumentParser(prog="gem-in-game official", description=__doc__.splitlines()[0])
+    ap = argparse.ArgumentParser(prog="hoop-tape-miner official", description=__doc__.splitlines()[0])
     ap.add_argument("--boxscore", required=True)
     ap.add_argument("--pointchart", required=True)
     ap.add_argument("--us-home", required=True, choices=["true", "false"])

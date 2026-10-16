@@ -1,6 +1,6 @@
 """Merge independently reviewed parts only after their sheet coverage is complete.
 
-usage: gem-in-game merge-reviews --run <run dir> [--review review]
+usage: hoop-tape-miner merge-reviews --run <run dir> [--review review]
 Reads <run>/<review>/manifest.json, events_part*.json and coverage_part*.json; writes <run>/events.json
 and <run>/review_coverage.json.
 """
@@ -14,7 +14,7 @@ from .events import event_summary, reviewed_events
 
 
 def main(argv=None):
-    ap = argparse.ArgumentParser(prog="gem-in-game merge-reviews")
+    ap = argparse.ArgumentParser(prog="hoop-tape-miner merge-reviews")
     ap.add_argument("--run", type=Path, required=True)
     ap.add_argument("--review", default="review")
     args = ap.parse_args(argv)

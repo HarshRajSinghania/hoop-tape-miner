@@ -2,9 +2,9 @@
 score flow in the header, CV lineups per possession, and the game split into N parts
 (one reviewer each) with a filled-in brief per part.
 
-    gem-in-game coach-sheets --run RUN --game game.json --official official.json \
+    hoop-tape-miner coach-sheets --run RUN --game game.json --official official.json \
         --out RUN/review_v1 [--parts 6] [--video V] [--brief prompts/film_review_brief.md] [--skip-sheets]
-    gem-in-game coach-sheets zoom SHEET TILE X Y W H OUT [--scale 3]   # close-up crop of one tile
+    hoop-tape-miner coach-sheets zoom SHEET TILE X Y W H OUT [--scale 3]   # close-up crop of one tile
 
 Reads RUN/tracks.pkl, possessions.pkl, player_numbers.json. Writes to --out: p<pid>_<k>.jpg,
 manifest.json, part<N>.json, lineup_intervals.json, brief_part<N>.md (if the brief template
@@ -143,7 +143,7 @@ def load_official(path: str | None, game_path: Path, run: Path | None = None) ->
             print("official stats:", p)
             return json.loads(p.read_text(encoding="utf-8"))
     print("note: no official stats (no official.json next to game.json or in the run dir); sheets will have no score flow "
-          "and the review works from the recording alone. Add one later with `gem-in-game official`.")
+          "and the review works from the recording alone. Add one later with `hoop-tape-miner official`.")
     return {"score_flow": []}
 
 
@@ -221,7 +221,7 @@ def main(argv=None):
     import sys
     argv = list(sys.argv[1:] if argv is None else argv)
     if argv[:1] == ["zoom"]:
-        zp = argparse.ArgumentParser(prog="gem-in-game coach-sheets zoom")
+        zp = argparse.ArgumentParser(prog="hoop-tape-miner coach-sheets zoom")
         for k in ("sheet", "tile", "x", "y", "w", "h", "out"):
             zp.add_argument(k, type=int if k in "tile x y w h".split() else str)
         zp.add_argument("--scale", type=float, default=3)
@@ -230,7 +230,7 @@ def main(argv=None):
         zoom(z.sheet, z.tile, z.x, z.y, z.w, z.h, z.out, scale=z.scale)
         print("wrote", z.out)
         return
-    ap = argparse.ArgumentParser(prog="gem-in-game coach-sheets", description=__doc__.splitlines()[0])
+    ap = argparse.ArgumentParser(prog="hoop-tape-miner coach-sheets", description=__doc__.splitlines()[0])
     ap.add_argument("--run", required=True)
     ap.add_argument("--game", required=True)
     ap.add_argument("--official", help="league stats (default: official.json next to game.json or in --run, if any)")

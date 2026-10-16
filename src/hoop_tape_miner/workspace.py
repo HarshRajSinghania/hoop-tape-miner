@@ -1,7 +1,7 @@
 """Where per-game data lives: a gitignored workspace, never the repo's tracked files.
 
 Layout: <workspace>/teams/<opponent-slug>/<date>/  game.json, official.json, README*.md, figures, run/
-The workspace root is $GEM_WORKSPACE when set, else ./workspace (relative to the current directory).
+The workspace root is $HOOP_WORKSPACE when set, else ./workspace (relative to the current directory).
 """
 from __future__ import annotations
 
@@ -11,7 +11,7 @@ from pathlib import Path
 
 
 def root() -> Path:
-    env = os.environ.get("GEM_WORKSPACE")
+    env = os.environ.get("HOOP_WORKSPACE")
     return Path(env).expanduser() if env else Path.cwd() / "workspace"
 
 

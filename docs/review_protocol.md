@@ -2,7 +2,7 @@
 
 This is the optional event review that feeds shot charts in `report`. The main coach film review (trips, actions, fouls, transition defence) uses `coach-sheets` and the checklist in `prompts/film_review_brief.md`.
 
-`gem-in-game review` writes one or more sheets per possession: `review/pNNN_k.jpg` (possession `NNN`, sheet `k`), plus `manifest.json`.
+`hoop-tape-miner review` writes one or more sheets per possession: `review/pNNN_k.jpg` (possession `NNN`, sheet `k`), plus `manifest.json`.
 
 ## Reading a sheet
 

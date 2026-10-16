@@ -4,7 +4,7 @@ Audience: the players and coach of an amateur team, reading on a phone, often in
 
 ## Inputs (read these, not the raw sheets)
 
-- `game.json`, `run/official.json` (if any), `run/review_v1/summary.json`, `run/review_v1/plusminus.json`, `players_facts.md`, focus players' `player<N>_facts.md`, the `memo_part<N>.md` files, the momentum figure (`gem-in-game momentum`).
+- `game.json`, `run/official.json` (if any), `run/review_v1/summary.json`, `run/review_v1/plusminus.json`, `players_facts.md`, focus players' `player<N>_facts.md`, the `memo_part<N>.md` files, the momentum figure (`hoop-tape-miner momentum`).
 - Every number and every video time in the report must come from these files. If a fact is not there, leave it out or mark it "likely".
 
 ## Section skeleton

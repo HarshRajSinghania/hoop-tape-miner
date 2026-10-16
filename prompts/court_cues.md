@@ -20,7 +20,7 @@ A short MP3 a player loops on earbuds before the game, on the bench or at halfti
 8. Render with a chime before each cue and a gap after it, loud enough for a gym, about one minute in total:
 
 ```
-uv run gem-in-game narrate --script workspace/players/<N>/cues.court.<lang>.md --chime --gap 6 --loud
+uv run hoop-tape-miner narrate --script workspace/players/<N>/cues.court.<lang>.md --chime --gap 6 --loud
 ```
 
 ## Warm-up version: rules
@@ -31,7 +31,7 @@ uv run gem-in-game narrate --script workspace/players/<N>/cues.court.<lang>.md -
 4. Render without the chime:
 
 ```
-uv run gem-in-game narrate --script workspace/players/<N>/cues.warmup.<lang>.md --loud
+uv run hoop-tape-miner narrate --script workspace/players/<N>/cues.warmup.<lang>.md --loud
 ```
 
 ## Check

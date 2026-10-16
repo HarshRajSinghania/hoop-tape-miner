@@ -1,6 +1,6 @@
 # Writing narration scripts (listen.<lang>.md)
 
-A spoken version of a report, rendered to MP3 by `gem-in-game narrate` (edge-tts) and embedded in the HTML page as a "listen" button. Many players will only listen, on the way to practice. Write for the ear, not the eye.
+A spoken version of a report, rendered to MP3 by `hoop-tape-miner narrate` (edge-tts) and embedded in the HTML page as a "listen" button. Many players will only listen, on the way to practice. Write for the ear, not the eye.
 
 ## Files
 
@@ -28,7 +28,7 @@ A spoken version of a report, rendered to MP3 by `gem-in-game narrate` (edge-tts
 
 ## After rendering
 
-1. `uv run gem-in-game narrate <folder>` writes `listen.zh.mp3` and `listen.en.mp3` next to the scripts (`--lang en` for one language, `--rate "-5%"` to slow down).
+1. `uv run hoop-tape-miner narrate <folder>` writes `listen.zh.mp3` and `listen.en.mp3` next to the scripts (`--lang en` for one language, `--rate "-5%"` to slow down).
 2. Measure the real length: `ffprobe -v error -show_entries format=duration -of csv=p=0 listen.<lang>.mp3`.
 3. If the "runs about N minutes" sentence is off by a minute or more, fix it and re-render. The HTML page shows the measured length on the play button, so the two must agree.
 4. Listen to the first and last 30 seconds: check how jersey numbers, scores and team names are pronounced; respell phonetically in the script if needed.

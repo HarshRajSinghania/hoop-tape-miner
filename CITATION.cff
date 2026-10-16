@@ -1,0 +1,18 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+type: software
+title: "hoop-tape-miner: AI basketball video analysis and coach reports for amateur teams"
+abstract: "A local computer-vision pipeline plus AI-agent film review that turns one amateur basketball game video into a coach report, player reviews, charts, narration and a single shareable HTML page."
+authors:
+  - alias: mariusDing
+version: 0.1.0
+date-released: 2026-10-16
+license: MIT
+repository-code: "https://github.com/mariusDing/hoop-tape-miner"
+keywords:
+  - basketball
+  - sports analytics
+  - computer vision
+  - video analysis
+  - coaching
+  - AI agents

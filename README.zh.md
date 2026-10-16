@@ -1,10 +1,24 @@
-# gem-in-game
+# hoop-tape-miner 🏀
 
-**把你业余篮球比赛的录像，变成一份教练级复盘：比赛怎么输/赢的、对手怎么打、每个队员该练什么，还附带可以直接听的口播版。**
+**从比赛录像里，挖出能赢下一场的东西。**
 
-你只需要一段比赛录像。你的 AI 编程助手（[Claude Code](https://claude.com/claude-code) 或 [Codex](https://openai.com/codex)）在你自己的 GPU 上跑完这个仓库里的流程，像教练一样看录像，然后写出报告。
+[![tests](https://github.com/mariusDing/hoop-tape-miner/actions/workflows/tests.yml/badge.svg)](https://github.com/mariusDing/hoop-tape-miner/actions/workflows/tests.yml)
+[![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+[![Python 3.11](https://img.shields.io/badge/python-3.11-blue.svg)](pyproject.toml)
+[![Agent: Claude Code | Codex](https://img.shields.io/badge/agent-Claude%20Code%20%7C%20Codex-8A2BE2.svg)](AGENTS.md)
+[![good first issues](https://img.shields.io/github/issues/mariusDing/hoop-tape-miner/good%20first%20issue.svg?label=good%20first%20issues)](https://github.com/mariusDing/hoop-tape-miner/issues?q=is%3Aopen+label%3A%22good+first+issue%22)
 
 [English](README.md) · 中文
+
+面向业余和俱乐部球队的 AI 篮球录像分析。把你比赛的录像变成一份教练级复盘：比赛怎么输/赢的、对手怎么打、每个队员该练什么，还附带可以直接听的口播版。
+
+你只需要一段比赛录像。你的 AI 编程助手（[Claude Code](https://claude.com/claude-code) 或 [Codex](https://openai.com/codex)）在你自己的 GPU 上跑完这个仓库里的计算机视觉流程，像教练一样看录像，然后写出报告。不用订阅，录像也不用上传到任何体育分析平台。
+
+**适合谁**
+
+- 每场都录像、但没时间回看的业余、俱乐部和野球队。
+- 想在再次交手前拿到一份对手球探报告的队长和志愿教练。
+- 想要一套能直接 fork 来改的篮球计算机视觉 + AI 看录像流程的开发者。
 
 ![报告页面：比分、口播大播放按钮、教练复盘正文](docs/images/hero.png)
 
@@ -56,16 +70,16 @@
 ### 2. 安装
 
 ```bash
-git clone https://github.com/mariusDing/gem-in-game.git
-cd gem-in-game
+git clone https://github.com/mariusDing/hoop-tape-miner.git
+cd hoop-tape-miner
 uv sync
-uv run gem-in-game          # 列出所有步骤
+uv run hoop-tape-miner          # 列出所有步骤
 ```
 
 ### 3. 新建一场比赛
 
 ```bash
-uv run gem-in-game new-game --opponent "Red Foxes" --date 2026-10-14 --video path/to/game.mp4 --us-team "Night Owls"
+uv run hoop-tape-miner new-game --opponent "Red Foxes" --date 2026-10-14 --video path/to/game.mp4 --us-team "Night Owls"
 ```
 
 这会创建 `workspace/teams/red-foxes/2026-10-14/`，里面的 `game.json` 需要你填：队名、球衣颜色、名单、最终比分。`workspace/` 里的一切只留在你自己电脑上，永远不会提交到 git。
@@ -86,7 +100,7 @@ uv run gem-in-game new-game --opponent "Red Foxes" --date 2026-10-14 --video pat
 ### 5. 分享
 
 ```bash
-uv run gem-in-game html workspace/teams/red-foxes/2026-10-14 --share --out Night-Owls_vs_Red-Foxes.html
+uv run hoop-tape-miner html workspace/teams/red-foxes/2026-10-14 --share --out Night-Owls_vs_Red-Foxes.html
 ```
 
 得到一个单文件，图片和音频都在里面，直接发聊天软件。如果聊天软件的内置浏览器禁用了脚本，页面会自动退回到手机自带的播放器。
@@ -105,16 +119,16 @@ uv run gem-in-game html workspace/teams/red-foxes/2026-10-14 --share --out Night
 | `narrate` | 口播稿 → MP3（加 `--chime --gap 6 --loud` 就是场上循环口令） |
 | `html` | 报告文件夹 → 一个双语 HTML（`--share` 生成可发送的单文件） |
 
-每一步的参数：`uv run gem-in-game <步骤> -h`。
+每一步的参数：`uv run hoop-tape-miner <步骤> -h`。
 
 ## 目录结构
 
 ```
-docs/playbook.md     助手照着做的完整流程：录像 → 报告
-prompts/             写作模板：复盘任务说明、教练报告、个人深度复盘、口播稿、场上口令
-templates/           game.json 和对手档案的骨架
-src/gem_in_game/     流程代码（每一步一个模块）
-workspace/           你自己的数据：录像、中间结果、报告（不进 git）
+docs/playbook.md         助手照着做的完整流程：录像 → 报告
+prompts/                 写作模板：复盘任务说明、教练报告、个人深度复盘、口播稿、场上口令
+templates/               game.json 和对手档案的骨架
+src/hoop_tape_miner/     流程代码（每一步一个模块）
+workspace/               你自己的数据：录像、中间结果、报告（不进 git）
 ```
 
 ## 常见问题
@@ -131,6 +145,26 @@ workspace/           你自己的数据：录像、中间结果、报告（不�
 
 **隐私。** 报告会点名球员，也会有真人画面。分享前请读 [docs/privacy.md](docs/privacy.md)，尤其是联赛里有未成年人的时候。
 
+## 现状和路线图
+
+已经在真实比赛上完整跑通（单机位侧面录像，NVIDIA GPU）。已知限制和下一步：
+
+- [ ] 不用 CUDA 也能跑（CPU 或 Apple Silicon 上的号码识别）
+- [ ] 一场谁都能跑的合成演示比赛，里面没有真人
+- [ ] 支持更多联赛的技术统计导入（目前只支持一种格式，见 [`official.py`](src/hoop_tape_miner/official.py)）
+- [ ] 中英文之外的更多报告和口播语言
+- [ ] 更好地处理会转动的机位或手机录像
+
+欢迎在 [Discussions](https://github.com/mariusDing/hoop-tape-miner/discussions) 里提想法、投票。
+
+## 参与贡献
+
+从改一个错别字到新增一个联赛导入器，都欢迎。先看 [CONTRIBUTING.md](CONTRIBUTING.md) 和 [good first issues](https://github.com/mariusDing/hoop-tape-miner/issues?q=is%3Aopen+label%3A%22good+first+issue%22)，有问题去 [Discussions](https://github.com/mariusDing/hoop-tape-miner/discussions) 问。
+
+一条硬规定：永远不要在 issue 或 PR 里附上比赛录像、截图、名单或真实球员的名字。详见 [docs/privacy.md](docs/privacy.md)。
+
+请遵守[行为准则](CODE_OF_CONDUCT.md)。安全问题请按 [SECURITY.md](SECURITY.md) 私下报告。
+
 ## 致谢
 
 基于 [RF-DETR](https://github.com/roboflow/rf-detr)、[supervision](https://github.com/roboflow/supervision) / [trackers](https://github.com/roboflow/trackers)、[SigLIP](https://huggingface.co/google/siglip-base-patch16-224)、[Qwen3-VL](https://huggingface.co/Qwen)、[edge-tts](https://github.com/rany2/edge-tts)，并参考了 [basketball_analysis](https://github.com/abdullahtarek/basketball_analysis)。详见 [docs/research.md](docs/research.md)。
@@ -138,5 +172,7 @@ workspace/           你自己的数据：录像、中间结果、报告（不�
 ## 许可证
 
 [MIT](LICENSE)。运行时下载的模型各自遵循它们自己的许可证。
+
+引用本项目：点 GitHub 右侧栏的 **Cite this repository**（[CITATION.cff](CITATION.cff)）。
 
 如果对你的球队有帮助，点个 ⭐ 让更多人看到。

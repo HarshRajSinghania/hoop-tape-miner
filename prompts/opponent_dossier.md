@@ -39,4 +39,4 @@ Link to the latest report's game plan section, then the 3-5 rules that matter mo
 2. Every pattern carries the date it was confirmed.
 3. Links are relative and stay inside the opponent folder. No local paths, no league URLs.
 4. Jersey numbers only, no names. Opponents did not consent to analysis: keep this page within the team.
-5. `gem-in-game new-game` creates this file from `templates/team-readme.md` the first time; fill it in, never overwrite it with `--force` after it has content. Write it in the language the team reads; it is not rendered to HTML.
+5. `hoop-tape-miner new-game` creates this file from `templates/team-readme.md` the first time; fill it in, never overwrite it with `--force` after it has content. Write it in the language the team reads; it is not rendered to HTML.

@@ -3,8 +3,8 @@ import unittest
 
 import pandas as pd
 
-from gem_in_game.events import event_summary, reviewed_events
-from gem_in_game.metrics import player_summary
+from hoop_tape_miner.events import event_summary, reviewed_events
+from hoop_tape_miner.metrics import player_summary
 
 
 def shot(**changes):

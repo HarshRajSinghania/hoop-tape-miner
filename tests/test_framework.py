@@ -6,9 +6,9 @@ from pathlib import Path
 
 import pytest
 
-from gem_in_game import cli, game_config, narrate, new_game, render_html, workspace
-from gem_in_game.build_tracks import team_map
-from gem_in_game.momentum import auto_stretches, breaks, find_runs, TEXT
+from hoop_tape_miner import cli, game_config, narrate, new_game, render_html, workspace
+from hoop_tape_miner.build_tracks import team_map
+from hoop_tape_miner.momentum import auto_stretches, breaks, find_runs, TEXT
 
 FIXTURE = Path(__file__).parent / "fixtures" / "report_min"
 
@@ -38,7 +38,7 @@ def test_slug():
 
 
 def test_new_game_scaffolds_workspace(tmp_path, monkeypatch, capsys):
-    monkeypatch.setenv("GEM_WORKSPACE", str(tmp_path / "ws"))
+    monkeypatch.setenv("HOOP_WORKSPACE", str(tmp_path / "ws"))
     video = tmp_path / "game.mp4"
     video.write_bytes(b"")
     cli.main(["new-game", "--opponent", "Red Foxes", "--date", "2026-10-14", "--video", str(video),
@@ -61,7 +61,7 @@ def test_new_game_scaffolds_workspace(tmp_path, monkeypatch, capsys):
 
 
 def test_new_game_rejects_bad_date(tmp_path, monkeypatch):
-    monkeypatch.setenv("GEM_WORKSPACE", str(tmp_path))
+    monkeypatch.setenv("HOOP_WORKSPACE", str(tmp_path))
     with pytest.raises(SystemExit):
         new_game.main(["--opponent", "X", "--date", "14/10/2026"])
 
@@ -150,7 +150,7 @@ def test_momentum_breaks_mark_halftime():
 
 
 def test_plots_use_game_sets_colours_and_names():
-    from gem_in_game import plots
+    from hoop_tape_miner import plots
     game = json.loads((FIXTURE / "game.json").read_text(encoding="utf8"))
     try:
         plots.use_game(game)

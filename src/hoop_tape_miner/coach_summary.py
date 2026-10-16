@@ -1,6 +1,6 @@
 """Aggregate film-review trips (review_v*/coach_part*.json) into per-segment coach numbers.
 
-usage: gem-in-game coach-summary --review <run>/review_v1 [--segments "A:0-302,B:302-1000,..."] [--out summary.json]
+usage: hoop-tape-miner coach-summary --review <run>/review_v1 [--segments "A:0-302,B:302-1000,..."] [--out summary.json]
 Times are our-video seconds. Each trip is assigned to the segment containing its start time.
 """
 from __future__ import annotations
@@ -59,7 +59,7 @@ def summarise(trips):
 
 
 def main(argv=None):
-    ap = argparse.ArgumentParser(prog="gem-in-game coach-summary")
+    ap = argparse.ArgumentParser(prog="hoop-tape-miner coach-summary")
     ap.add_argument("--review", required=True)
     ap.add_argument("--segments", default="")
     ap.add_argument("--out")

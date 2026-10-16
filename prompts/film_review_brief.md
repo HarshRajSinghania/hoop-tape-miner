@@ -1,7 +1,7 @@
 # Coach film-review brief (read fully before starting)
 
 <!--
-Template. `gem-in-game coach-sheets` fills it once per part into <out>/brief_part<N>.md: every {placeholder}
+Template. `hoop-tape-miner coach-sheets` fills it once per part into <out>/brief_part<N>.md: every {placeholder}
 is replaced, "partN" becomes "part<N>", and this comment is dropped. Values come from game.json and
 official.json; a game.json "brief" block overrides any of them, e.g.
   "brief": {"us_colour": "dark navy", "them_colour": "light blue", "watch_notes": "...", "memo_language": "English"}

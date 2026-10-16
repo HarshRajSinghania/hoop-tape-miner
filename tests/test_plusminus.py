@@ -4,7 +4,7 @@ import tempfile
 import unittest
 from pathlib import Path
 
-from gem_in_game.plusminus import compute, main, merge, score_events
+from hoop_tape_miner.plusminus import compute, main, merge, score_events
 
 
 def ev(t, team, pts, play_t=None):
