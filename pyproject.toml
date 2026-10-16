@@ -1,1 +1,82 @@
-$(cat /tmp/pyproject.toml)
+[project]
+name = "hoop-tape-miner"
+version = "0.1.0"
+description = "AI basketball video analysis for amateur teams: one game video -> coach report, player reviews, charts and narration, via computer vision and AI-agent film review"
+readme = "README.md"
+license = "MIT"
+license-files = ["LICENSE"]
+authors = [{ name = "mariusDing" }]
+keywords = ["basketball", "sports-analytics", "computer-vision", "video-analysis", "coaching", "scouting", "object-tracking", "ai-agents", "claude-code", "codex"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: End Users/Desktop",
+    "Intended Audience :: Developers",
+    "Operating System :: Microsoft :: Windows",
+    "Operating System :: POSIX :: Linux",
+    "Programming Language :: Python :: 3 :: Only",
+    "Programming Language :: Python :: 3.11",
+    "Topic :: Multimedia :: Video",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+    "Topic :: Scientific/Engineering :: Image Recognition",
+]
+requires-python = ">=3.11,<3.12"
+dependencies = [
+    "accelerate>=1.15.0",
+    "bitsandbytes>=0.50.2",
+    "edge-tts>=7.3.1",
+    "huggingface-hub>=2.2.0",
+    "markdown-it-py>=4.2.0",
+    "matplotlib>=3.11.2",
+    "opencv-python>=5.0.0.93",
+    "pandas>=3.0.6",
+    "protobuf>=7.36.2",
+    "rfdetr>=1.11.2",
+    "scikit-learn>=1.9.1",
+    "scipy>=1.17.1",
+    "sentencepiece>=0.2.2",
+    "supervision>=0.30.9",
+    "torch>=2.5",
+    "torchvision>=0.20",
+    "tqdm>=4.70.1",
+    "trackers>=2.6.1",
+    "transformers>=5.19.0",
+    "ultralytics>=8.4.177",
+    "umap-learn>=0.5.12",
+]
+
+[project.urls]
+Homepage = "https://github.com/mariusDing/hoop-tape-miner"
+Documentation = "https://github.com/mariusDing/hoop-tape-miner/tree/master/docs"
+Repository = "https://github.com/mariusDing/hoop-tape-miner"
+Issues = "https://github.com/mariusDing/hoop-tape-miner/issues"
+Changelog = "https://github.com/mariusDing/hoop-tape-miner/blob/master/CHANGELOG.md"
+
+[project.scripts]
+hoop-tape-miner = "hoop_tape_miner.cli:main"
+
+[tool.uv.sources]
+torch = [{ index = "pytorch-cu124" }]
+torchvision = [{ index = "pytorch-cu124" }]
+
+[[tool.uv.index]]
+name = "pytorch-cu124"
+url = "https://download.pytorch.org/whl/cu124"
+explicit = true
+
+[build-system]
+requires = ["uv_build>=0.13.1,<0.14.0"]
+build-backend = "uv_build"
+
+[dependency-groups]
+dev = [
+    "pytest>=9.1.1",
+    "ruff>=0.6.0",
+]
+
+[tool.ruff]
+line-length = 180
+target-version = "py311"
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "B", "C4", "UP", "RUF"]
+ignore = ["C408", "B023", "RUF059", "RUF046", "RUF100", "BLE001", "PERF102", "F402", "F821", "RUF007", "RUF001", "B905", "E741", "E702", "C416", "RUF005", "E731", "B904", "B007"]
